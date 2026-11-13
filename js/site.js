@@ -32,12 +32,17 @@
   function fromHash(){var h=location.hash.slice(1);if(items.length&&['calle','redes','web'].indexOf(h)>-1){filt(h);var g=document.getElementById('galeria');if(g)setTimeout(function(){g.scrollIntoView()},30);sl.forEach(function(x){x.classList.toggle('on',x.getAttribute('href')==='#'+h)})}else if(items.length&&(h==='galeria'||h==='')){filt('all');sl.forEach(function(x){x.classList.toggle('on',x.getAttribute('href')==='#galeria')})}else if(items.length&&h==='caso'){sl.forEach(function(x){x.classList.toggle('on',x.getAttribute('href')==='#caso')})}}
   window.addEventListener('hashchange',fromHash);fromHash();
 
-  // lightbox
+  // lightbox (imágenes y videos)
   var lb=document.getElementById('lb');
-  if(lb){var li=document.getElementById('lb-img');
-    document.querySelectorAll('#grid figure button').forEach(function(b){b.addEventListener('click',function(){var im=b.querySelector('img');li.src=im.src;li.alt=im.alt;if(lb.showModal)lb.showModal()})});
-    document.getElementById('lb-close').addEventListener('click',function(){lb.close()});
-    lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});}
+  if(lb){var li=document.getElementById('lb-img'),lv=document.createElement('video');lv.controls=true;lv.playsInline=true;lv.loop=true;lv.hidden=true;lb.appendChild(lv);
+    document.querySelectorAll('#grid figure button').forEach(function(b){b.addEventListener('click',function(){
+      var im=b.querySelector('img'),v=b.querySelector('video');
+      if(v){li.hidden=true;lv.hidden=false;lv.src=v.currentSrc||v.src;lv.poster=v.poster;lv.muted=false;}else{lv.hidden=true;lv.pause();li.hidden=false;li.src=im.src;li.alt=im.alt}
+      if(lb.showModal)lb.showModal();if(v){var p=lv.play();if(p&&p.catch)p.catch(function(){})}})});
+    function cl(){lv.pause();lb.close()}
+    document.getElementById('lb-close').addEventListener('click',cl);
+    lb.addEventListener('click',function(e){if(e.target===lb)cl()});
+    lb.addEventListener('close',function(){lv.pause()});}
 
   // copiar correo
   var cm=document.getElementById('copy-mail'),msg=document.getElementById('copy-msg');
@@ -56,7 +61,7 @@
   })}
 })();
 // reels: reproducir solo los que están en pantalla
-(function(){var vs=document.querySelectorAll('.reels video');if(!vs.length)return;
+(function(){var vs=document.querySelectorAll('.reels video, .grid video');if(!vs.length)return;
  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
  if(!('IntersectionObserver' in window)||rm){vs.forEach(function(v){v.controls=true});return}
  var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){v.controls=true})}else{v.pause()}})},{threshold:.5});

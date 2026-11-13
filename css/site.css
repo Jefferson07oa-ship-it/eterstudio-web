@@ -299,3 +299,25 @@ section:has(> .strip){padding-bottom:clamp(48px,6vw,90px)}
 .reels figcaption{margin-top:16px;color:#B9CCEB;font-size:14px;font-weight:600;text-align:center}
 .reels figcaption b{display:block;color:#fff;font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em}
 @media (min-width:1240px){.reels{justify-content:center}}
+/* portafolio: videos y ajuste en celular */
+.grid .vid button{position:relative;cursor:pointer}
+.grid video{width:100%;height:auto;display:block;aspect-ratio:9/16;object-fit:cover;background:#0B1D54}
+.grid .play{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--navy);display:grid;place-items:center;font-size:13px;padding-left:2px;box-sizing:border-box}
+dialog{max-width:min(92vw,560px);max-height:90dvh}
+dialog img,dialog video{display:block;max-width:100%;max-height:84dvh;width:auto;height:auto;margin:auto;border-radius:16px;object-fit:contain}
+dialog button{top:-46px;right:0}
+dialog{overflow:visible;margin:auto;padding-top:0}
+@media (max-width:640px){
+ .grid{columns:2;column-gap:10px;margin-top:24px}
+ .grid figure{margin-bottom:10px;border-radius:14px}
+ .grid figcaption{padding:8px 10px}
+ .grid figcaption b{font-size:12.5px;line-height:1.25}.grid figcaption span{font-size:11.5px}
+ .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1*clamp(16px,4vw,32px));padding-inline:clamp(16px,4vw,32px)}
+ .filters button{flex:none;font-size:14px;padding:10px 16px}
+ .grid .play{width:28px;height:28px;top:8px;right:8px;font-size:11px}
+ .case-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+ .case-grid figcaption{font-size:12px}
+ .reels figure{width:62vw}
+ .strip a{width:56vw}
+}
+dialog [hidden]{display:none!important}
