@@ -321,3 +321,38 @@ dialog{overflow:visible;margin:auto;padding-top:0}
  .strip a{width:56vw}
 }
 dialog [hidden]{display:none!important}
+/* abanico del inicio: piezas completas, sin cortes */
+.hero{padding-bottom:clamp(56px,7vw,96px)}
+.fan{height:clamp(300px,34vw,440px)}
+.fan figure{bottom:auto;top:12%;box-shadow:0 24px 50px rgba(4,10,40,.45)}
+.fan .f2,.fan .f4{top:6%}
+.fan .f3{top:0;width:clamp(150px,20vw,250px)}
+@media (max-width:640px){
+ .fan{height:auto;aspect-ratio:1/0.82;max-width:420px}
+ .fan figure{width:31%;top:16%;border-width:4px;border-radius:16px}
+ .fan .f2{transform:translateX(-50%) translateX(-78%) rotate(-9deg);top:14%}
+ .fan .f4{transform:translateX(-50%) translateX(78%) rotate(9deg);top:14%}
+ .fan .f3{width:37%;top:4%}
+ .fan .f3 div{inset:7px;border-width:2.5px;border-radius:11px;font-size:15px;gap:8px}
+ .fan .f3 span{width:38px;height:38px;font-size:24px}
+}
+.hero{padding-bottom:clamp(36px,4vw,56px)}
+.fan{height:clamp(300px,30vw,400px)}
+@media (max-width:640px){
+ .fan{aspect-ratio:1/0.88;max-width:440px}
+ .fan figure{width:37%;top:14%}
+ .fan .f2{transform:translateX(-50%) translateX(-72%) rotate(-9deg);top:12%}
+ .fan .f4{transform:translateX(-50%) translateX(72%) rotate(9deg);top:12%}
+ .fan .f3{width:42%;top:2%}
+}
+@media (max-width:640px){
+ .fan{aspect-ratio:1/0.92;margin-top:30px}
+ .fan figure{width:41%;top:10%}
+ .fan .f2{transform:translateX(-50%) translateX(-64%) rotate(-8deg);top:9%}
+ .fan .f4{transform:translateX(-50%) translateX(64%) rotate(8deg);top:9%}
+ .fan .f3{width:46%;top:0}
+ .fan .f3 div{font-size:17px}
+}
+@media (max-width:640px){.fan{aspect-ratio:1/0.74}}
+@media (max-width:640px){.fan .f2,.fan .f4{width:37%;top:12%}.fan .f2{transform:translateX(-50%) translateX(-60%) rotate(-8deg)}.fan .f4{transform:translateX(-50%) translateX(60%) rotate(8deg)}.fan .f3{width:43%}}
+@media (max-width:640px){.fan{height:auto;width:100%}}
