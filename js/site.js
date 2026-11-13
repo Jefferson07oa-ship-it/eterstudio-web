@@ -55,3 +55,9 @@
     window.open('https://wa.me/50687463346?text='+encodeURIComponent(t),'_blank','noopener');
   })}
 })();
+// reels: reproducir solo los que están en pantalla
+(function(){var vs=document.querySelectorAll('.reels video');if(!vs.length)return;
+ var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!('IntersectionObserver' in window)||rm){vs.forEach(function(v){v.controls=true});return}
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){v.controls=true})}else{v.pause()}})},{threshold:.5});
+ vs.forEach(function(v){io.observe(v)});})();
